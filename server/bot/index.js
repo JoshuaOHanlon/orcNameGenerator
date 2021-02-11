@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 require('dotenv').config();
 
-const commands = require('./src/commands.js');
+const commands = require('./commands.js');
 
 const client = new Discord.Client();
 client.login(process.env.BOT_KEY);
