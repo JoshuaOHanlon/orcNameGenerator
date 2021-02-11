@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/orcbot', { useNewUrlParser: true, useUnifiedTopology: true });
+const dbNames = mongoose.createConnection('mongodb://localhost/orcbot', { useNewUrlParser: true, useUnifiedTopology: true });
+const dbPieces = mongoose.createConnection('mongodb://localhost/orcbotparts', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected');
+//const dbNames = mongoose.connection;
+dbNames.on('error', console.error.bind(console, 'connection error:'));
+dbNames.once('open', () => {
+  console.log('DB_Names Connected');
 });
 
+//  Will be used to store 'top rated' orc names
 const orcNameSchema = new mongoose.Schema({
   first: String,
   connector: String,
@@ -15,6 +17,18 @@ const orcNameSchema = new mongoose.Schema({
   lastTwo: String
 });
 
-const OrcName = mongoose.model('OrcName', orcNameSchema);
+dbPieces.on('error', console.error.bind(console, 'connection error:'));
+dbPieces.once('open', () => {
+  console.log('DB_Pieces Connected');
+});
 
-module.exports = { OrcName };
+//  Stores name pieces - 'first', 'on', 'lastOne', 'lastTwo'
+const namePieceSchema = new mongoose.Schema({
+  part: String,
+  title: String
+});
+
+const OrcName = dbNames.model('OrcName', orcNameSchema);
+const OrcTitle = dbPieces.model('OrcTitle', namePieceSchema);
+
+module.exports = { OrcName, OrcTitle };
