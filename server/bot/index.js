@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 require('dotenv').config();
 
-const commands = require('./commands.js');
+const commands = require('./genName.js');
 
 const client = new Discord.Client();
 client.login(process.env.BOT_KEY);
@@ -32,6 +32,10 @@ client.on('message', (msg) => {
   }
 
   if (command === 'name') {
-    msg.reply(`Your Orc name is: '${commands.genOrcName()}'`);
+    const waitFunc = async() => {
+      const output = await commands.genOrcName();
+      return msg.reply(`Your Orc name is: '${output}'`);
+    };
+    waitFunc();
   }
 });
