@@ -22,7 +22,7 @@ app.post('/title', (req, res) => {
   const part = req.body.part;
   const title = req.body.title;
   const entry = new db.OrcTitle({ part, title });
-  //console.log(entry);
+
   entry.save((err, data) => {
     if (err) {
       console.log(err);
