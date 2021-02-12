@@ -22,7 +22,7 @@ dbPieces.once('open', () => {
   console.log('DB_Pieces Connected');
 });
 
-//  Stores name pieces - 'first', 'on', 'lastOne', 'lastTwo'
+//  Stores name pieces - 'first', 'connector', 'lastOne', 'lastTwo'
 const namePieceSchema = new mongoose.Schema({
   part: String,
   title: String
