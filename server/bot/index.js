@@ -33,7 +33,7 @@ client.on('message', (msg) => {
 
   if (command === 'name') {
     const waitFunc = async() => {
-      const output = await commands.genOrcName();
+      let output = await commands.genOrcName();
       return msg.reply(`Your Orc name is: '${output}'`);
     };
     waitFunc();
