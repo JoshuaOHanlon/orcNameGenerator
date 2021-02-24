@@ -3,20 +3,13 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   :root {
     --green: #0A6807;
-    --lavender: #BBBAC6;
-    --grey: #9B97B2;
+    --darkBlue: #011936;
+    --blue: #85BAA1;
+    --lightBlue: #A9DDD6;
     --white: #f8f8f8;
-  }
-
-  html {
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  *,
-  *:before,
-  *:after {
-    box-sizing: inherit;
+    --grey: #465362;
+    --pink: #AD7A99;
+    --peach: #EFB0B4;
   }
 
   body {

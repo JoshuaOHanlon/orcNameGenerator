@@ -6,10 +6,11 @@ const HeroStyling = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 50vh;
   width: 100%;
+  background-color: var(--blue);
 
-  .container {
+  .heroContainer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -20,9 +21,17 @@ const HeroStyling = styled.section`
     animation: fade 0.9s ease-in;
   }
 
-  @keyframes fade {
+  .fade-in-second {
+    animation: fade 0.9s ease-in 0.9s forwards;
+    visibility: visible;
+  }
+
+  @keyframes fadeIn {
     0% {
       opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 
@@ -36,9 +45,14 @@ const HeroStyling = styled.section`
     }
   }
 
+  h2 {
+    visibility: hidden;
+    color: white;
+  }
+
   h3 {
     margin-top: 10px;
-    color: grey;
+    color: var(--grey);
     line-height: 0.9;
   }
 
@@ -48,53 +62,25 @@ const HeroStyling = styled.section`
   }
 `;
 
-const EmailStyling = styled.div`
-  margin-top: 50px;
-  border: 1px solid var(--green);
-  border-radius: 3px;
-  height: 50px;
-  width: 140px;
-  transition: 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &:hover {
-    background-color: rgba(0, 254, 222, 0.3);
-  }
-  a {
-    color: var(--green);
-    text-decoration: none;
-  }
-`;
-
 class Hero extends React.Component {
   constructor(props) {
     super(props)
 
     this.first = <h1 className={
-                  this.props.isLoaded ? 'fade-in-first' : ''
-                }>This is the</h1>;
-    this.second = <h2>Orc Name Generator.</h2>;
-    this.third = <h3>It is the product of a combination of minds.</h3>;
-    this.desc = (
-      <p>
-        blahahablahaha
-      </p>
-    );
-    this.contactBtn = (
-      <EmailStyling>
-        <a >
-          TBD
-        </a>
-      </EmailStyling>
-    );
-    this.renderArr = [this.first, this.second, this.third, this.desc, this.contactBtn];
+                    this.props.isLoaded ? 'fade-in-first' : ''
+                  }>It had to be done.</h1>;
+    this.second = <h2 className={
+                    this.props.isLoaded ? 'fade-in-second' : ''
+                  }>The Orc Name Generator.</h2>;
+    this.third = <h3>Who doesn't want an orc name?</h3>;
+
+    this.renderArr = [this.first, this.second, this.third];
   }
 
   render() {
     return (
       <HeroStyling>
-        <div className='container'>
+        <div className='heroContainer'>
           {this.renderArr.map((item, i) => (
             <div key={i} >{item}</div>
           ))}

@@ -4,24 +4,27 @@ import Rodal from 'rodal';
 import 'rodal/lib/rodal.css';
 import deleteIcon from '../img/delete.png';
 import editIcon from '../img/edit.png';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+
 
 const SettingsStyle = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   text-align: center;
 
   h1 {
-    color: var(--green);
+    color: var(--grey);
   }
 
   .aboutContainer {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
   }
 `;
@@ -31,25 +34,28 @@ const TablesContStyle = styled.div`
   grid-template-columns: 250px 250px 250px 250px;
   grid-template-rows: 400px;
   text-align: center;
+  padding-top: 20px;
 `;
 
 const TableStyle = styled.div`
   .tableMaster {
-    height: 100%;
+    max-height: 100%;
     border: 1px solid var(--green);
     background: #E8E8E8;
+    display: flex;
+    flex-direction: column;
   }
 
-  ul {
-    padding: 0;
-    margin: 0;
-    list-style-position: inside;
-    list-style-type: none;
+  .list-group {
+    max-height: inherit;
+    overflow: scroll;
   }
-  li {
-    border-bottom: 1px solid grey;
-    padding: 5px;
+
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
   }
+
   span {
     padding-left: 30px;
   }
@@ -61,15 +67,11 @@ const TableStyle = styled.div`
 
 const ButtonStyle = styled.div`
   padding-top: 70px;
+`;
 
-  button {
-    color: var(--green);
-    background-color: white;
-    border: 1px solid;
-    border-color: var(--green);
-    border-radius: 5px;
-    height: 40px;
-    width: 80px;
+const ModalStyle = styled.div`
+  form {
+    padding-bottom: 30px;
   }
 `;
 
@@ -121,90 +123,90 @@ class Settings extends React.Component {
   render() {
     return (
       <SettingsStyle id='settings'>
-        <div className='container'>
+        <div className='aboutContainer'>
           <h1>Settings</h1>
           <TablesContStyle>
             <TableStyle>
               <h3>First</h3>
               <div className='tableMaster'>
-                <ul>
+                <ListGroup>
                   {this.props.titles.first.map((title, i) => {
-                    return <li key={i}>
-                      {title}
-                      <span>
-                        <img src={editIcon}/>
-                        <img src={deleteIcon}/>
-                      </span>
-                    </li>
-                  })}
-                </ul>
+                      return <ListGroup.Item variant='success' key={i}>
+                        {title}
+                        <span>
+                          <img src={editIcon}/>
+                          <img src={deleteIcon}/>
+                        </span>
+                      </ListGroup.Item>
+                    })}
+                </ListGroup>
               </div>
             </TableStyle>
             <TableStyle>
               <h3>On</h3>
               <div className='tableMaster'>
-                <ul>
+                <ListGroup>
                   {this.props.titles.connector.map((title, i) => {
-                    return <li key={i}>
+                    return <ListGroup.Item variant='success' key={i}>
                       {title}
                       <span>
                         <img src={editIcon}/>
                         <img src={deleteIcon}/>
                       </span>
-                    </li>
+                    </ListGroup.Item>
                   })}
-                </ul>
+                </ListGroup>
               </div>
             </TableStyle>
             <TableStyle>
               <h3>Last One</h3>
               <div className='tableMaster'>
-                <ul>
+                <ListGroup>
                   {this.props.titles.lastOne.map((title, i) => {
-                    return <li key={i}>
+                    return <ListGroup.Item variant='success' key={i}>
                       {title}
                       <span>
                         <img src={editIcon}/>
                         <img src={deleteIcon}/>
                       </span>
-                    </li>
+                    </ListGroup.Item>
                   })}
-                </ul>
+                </ListGroup>
               </div>
             </TableStyle>
             <TableStyle>
               <h3>Last Two</h3>
               <div className='tableMaster'>
-                <ul>
+                <ListGroup>
                   {this.props.titles.lastTwo.map((title, i) => {
-                    return <li key={i}>
+                    return <ListGroup.Item variant='success' key={i}>
                       {title}
                       <span>
                         <img src={editIcon}/>
                         <img src={deleteIcon}/>
                       </span>
-                    </li>
+                    </ListGroup.Item>
                   })}
-                </ul>
+                </ListGroup>
               </div>
             </TableStyle>
           </TablesContStyle>
         </div>
         <ButtonStyle>
-          <button onClick={this.show.bind(this)}>New Title</button>
+          <Button variant='success' onClick={this.show.bind(this)}>New Title</Button>
           <Rodal visible={this.state.visible} onClose={this.hide.bind(this)}>
-                  <div>
+                  <ModalStyle>
                     <form onChange={ this.handleChange }>
                       <select name='part'>
                         <option value='first'>First</option>
-                        <option value='on'>On</option>
+                        <option value='connector'>On</option>
                         <option value='lastOne'>Last One</option>
                         <option value='lastTwo'>Last Two</option>
                       </select><br/>
                       <input type='text' name='title' placeholder='Title'  />
                     </form>
-                    <button type='button' onClick={this.handleSubmit} >Submit</button>
-                  </div>
+                    <Button variant='success' onClick={this.handleSubmit}>Submit</Button>
+                  </ModalStyle>
           </Rodal>
         </ButtonStyle>
       </SettingsStyle>

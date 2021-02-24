@@ -6,7 +6,7 @@ const AboutStyle = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 45vh;
   width: 100%;
 
   .aboutContainer {
@@ -14,6 +14,10 @@ const AboutStyle = styled.section`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+
+    h1 {
+      color: var(--grey);
+    }
   }
 `;
 
@@ -27,8 +31,9 @@ class About extends React.Component {
   render() {
     return (
       <AboutStyle id='about'>
-        <div className='container'>
-          <p>About</p>
+        <div className='aboutContainer'>
+          <h1>About</h1>
+          <p>To be filled...</p>
         </div>
       </AboutStyle>
     )
