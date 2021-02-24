@@ -2,6 +2,8 @@ import React from 'react';
 import GlobalStyle from './styles/GlobalStyle.js';
 import axios from 'axios';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Nav from './components/Nav.js';
 import Layout from './components/Layout.js';
 
@@ -52,8 +54,8 @@ class App extends React.Component {
   addTitle(data) {
     axios.post('http://localhost:8000/title', data)
       .then((res) => {
-        console.log(res);
         this.getTitles();
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);

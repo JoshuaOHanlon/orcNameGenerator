@@ -35,7 +35,6 @@ const sortData = (data) => {
 const genOrcName = async () => {
   const res = await db.OrcTitle.find();
   const storage = sortData(res);
-  console.log(storage);
 
   const first = storage.first[Math.floor(Math.random() * storage.first.length)];
 

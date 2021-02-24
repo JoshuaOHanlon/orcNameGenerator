@@ -4,22 +4,29 @@ import styled from 'styled-components';
 
 const NavContainer = styled.div`
   position: fixed;
-  width: 95%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   transition: top 0.5s;
+  background-color: var(--blue);
 `;
 
 const LogoContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-top: 5px;
+  padding-left: 50px;
+  color: white;
 `;
 
 const LinksContainer = styled.section`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-top: 15px;
+  padding-right: 50px;
+  font-size: 15pt;
 
   ol {
     display: flex;
@@ -29,20 +36,10 @@ const LinksContainer = styled.section`
   li {
     margin-left: 40px;
     color: var(--green);
+    list-style-type: none;
   }
   span {
-    color: grey;
-  }
-  button {
-    margin-left: 40px;
-    margin-top: 5px;
-    color: var(--green);
-    background-color: var(--slate);
-    border: 1px solid;
-    border-color: var(--green);
-    border-radius: 5px;
-    height: 40px;
-    width: 80px;
+    color: white;
   }
 `;
 
@@ -54,10 +51,6 @@ const linksArr = [
   {
     name: 'Generate',
     url: 'generate'
-  },
-  {
-    name: 'Names',
-    url: 'names'
   },
   {
     name: 'Settings',
@@ -92,7 +85,7 @@ class Nav extends React.Component {
     return(
       <NavContainer id='nav'>
         <LogoContainer>
-          <p>LOGO HERE</p>
+          <h1>OrcGen</h1>
         </LogoContainer>
         <LinksContainer>
           <ol>
@@ -102,7 +95,6 @@ class Nav extends React.Component {
               </li>
             ))}
           </ol>
-          <button type='button'>TBD</button>
         </LinksContainer>
       </NavContainer>
     );
